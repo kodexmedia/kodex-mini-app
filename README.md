@@ -1,5 +1,5 @@
-# kodex-mini-app
-KODEX MEDIA GROUP — Telegram Mini App
+
+
 <!doctype html>
 <html lang="ru">
 <head>
