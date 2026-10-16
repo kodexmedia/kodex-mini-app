@@ -1,3 +1,7 @@
+# KODEX MEDIA GROUP
+
+Telegram Mini App для оформления заявок на услуги в сфере ИИ и технологий.
+
 <!doctype html>
 
 <html lang="ru">
