@@ -1,138 +1,734 @@
+
 <!doctype html>
 <html lang="ru">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#05050b">
-<title>KODEX — Оформление заявки</title>
+<title>KODEX MEDIA GROUP — Оформление заявки</title>
+
 <style>
-:root{--bg:#05050b;--panel:#0c1020;--muted:#9ba5c4;--pink:#ff00b8;--purple:#7b2cff;--blue:#00d9ff;--line:#25304e}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 80% 10%,#17103a 0,transparent 35%),radial-gradient(ellipse at 10% 80%,#170b32 0,transparent 32%),var(--bg);color:#f8f9ff;font-family:Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif;min-height:100vh}
-body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.24;background-image:radial-gradient(#ff00b8 1px,transparent 1.5px),radial-gradient(#00d9ff 1px,transparent 1.5px);background-size:22px 22px,29px 29px;background-position:0 0,12px 15px;mask-image:linear-gradient(120deg,black,transparent 35%,transparent 70%,black)}
-.wrap{width:min(100%,720px);margin:auto;padding:24px 18px 40px;position:relative}
-.brand{display:flex;align-items:center;justify-content:center;gap:12px;margin:8px 0 26px}.mark{width:48px;height:48px;position:relative;flex:none}.mark:before{content:"";position:absolute;inset:2px 20px 2px 0;background:linear-gradient(145deg,#ff168d,#7b2cff);clip-path:polygon(0 0,100% 0,35% 42%,100% 100%,48% 100%,0 57%)}.mark:after{content:"";position:absolute;right:0;bottom:1px;width:24px;height:20px;background:linear-gradient(135deg,#168bff,#00e4ff);clip-path:polygon(0 0,100% 100%,25% 100%)}.brand-name{font-size:clamp(23px,5vw,34px);font-weight:900;letter-spacing:2px}.brand-sub{font-size:10px;letter-spacing:4px;color:#00cfff;font-weight:800;margin-top:1px}
-.card{border:1px solid #29304d;border-radius:26px;background:linear-gradient(145deg,rgba(14,17,34,.96),rgba(5,7,16,.97));box-shadow:0 0 45px #6a13ff14;padding:clamp(20px,5vw,36px);overflow:hidden}
-.kicker{text-transform:uppercase;letter-spacing:2px;color:#aab3d0;font-size:12px;font-weight:800}.step{margin-top:8px;color:#aab3d0;font-weight:700}.step strong{color:#ff26c4}.track{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin:18px 0 28px}.dot{height:5px;border-radius:9px;background:#28324e}.dot.done{background:linear-gradient(90deg,var(--pink),var(--blue));box-shadow:0 0 10px #8b2cff88}
-h1{font-size:clamp(27px,6vw,42px);line-height:1.1;margin:0 0 10px;letter-spacing:-.7px} .gradient{background:linear-gradient(90deg,#ff19b9,#8a43ff,#00d9ff);-webkit-background-clip:text;background-clip:text;color:transparent}.hint{color:var(--muted);line-height:1.55;margin:0 0 25px;font-size:15px}
-label{display:block;color:#dce1f7;font-weight:650;margin:0 0 9px;font-size:14px}input,textarea{width:100%;border:1px solid #3d4267;border-radius:15px;padding:17px 16px;background:#090d1a;color:#fff;font:inherit;outline:none;transition:.2s}input:focus,textarea:focus{border-color:#9a43ff;box-shadow:0 0 0 3px #8b2cff26,0 0 20px #00d9ff12}textarea{min-height:125px;resize:vertical}::placeholder{color:#727d9c}.field{margin:22px 0}
-.options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.option{border:1px solid #303957;border-radius:15px;padding:15px 12px;background:#0a0e1d;color:#e7eaff;text-align:left;cursor:pointer;min-height:74px;font:inherit;transition:.18s}.option span{display:block;font-size:12px;color:#8995b7;margin-top:5px}.option.selected{border-color:#b13cff;background:linear-gradient(130deg,#5d0e7940,#006b9740);box-shadow:inset 0 0 0 1px #00d9ff55}
-.actions{display:flex;gap:12px;margin-top:28px}.btn{border:0;border-radius:15px;padding:16px 20px;font:inherit;font-weight:800;cursor:pointer}.primary{flex:1;color:#fff;background:linear-gradient(100deg,#ec00c8,#722cff 52%,#00cfff);box-shadow:0 8px 26px #8b2cff35}.secondary{background:#151a2d;color:#dbe2ff;border:1px solid #303957}.btn:disabled{opacity:.4;cursor:not-allowed}
-.review{display:grid;gap:0;border:1px solid #2c3452;border-radius:15px;overflow:hidden;margin-top:22px}.review-row{padding:13px 15px;border-bottom:1px solid #252d48;display:grid;grid-template-columns:120px 1fr;gap:12px}.review-row:last-child{border:0}.review-row .key{color:#96a1c0;font-size:13px}.review-row .val{overflow-wrap:anywhere}.success{text-align:center;padding:28px 4px}.success-icon{width:70px;height:70px;border-radius:50%;margin:0 auto 20px;display:grid;place-items:center;font-size:32px;background:linear-gradient(135deg,#c400df,#00cfff);box-shadow:0 0 35px #782bff55}
-.foot{text-align:center;color:#687493;font-size:12px;margin-top:18px}.hidden{display:none!important}
-@media(max-width:440px){.wrap{padding:16px 12px 28px}.brand{margin:8px 0 18px}.card{border-radius:21px}.options{grid-template-columns:1fr}.option{min-height:62px}.review-row{grid-template-columns:95px 1fr}.actions .btn{padding:15px 13px}}
+:root {
+  --bg: #05050b;
+  --panel: #0c1020;
+  --muted: #9ba5c4;
+  --pink: #ff00b8;
+  --purple: #7b2cff;
+  --blue: #00d9ff;
+  --line: #25304e;
+}
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(ellipse at 80% 10%, #17103a 0, transparent 35%),
+    radial-gradient(ellipse at 10% 80%, #170b32 0, transparent 32%),
+    var(--bg);
+  color: #f8f9ff;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: .2;
+  background-image:
+    radial-gradient(#ff00b8 1px, transparent 1.5px),
+    radial-gradient(#00d9ff 1px, transparent 1.5px);
+  background-size: 22px 22px, 29px 29px;
+  background-position: 0 0, 12px 15px;
+  mask-image: linear-gradient(120deg, black, transparent 35%, transparent 70%, black);
+}
+
+.wrap {
+  width: min(100%, 720px);
+  margin: auto;
+  padding: 24px 18px 40px;
+  position: relative;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin: 8px 0 26px;
+}
+
+.mark {
+  width: 76px;
+  height: 76px;
+  object-fit: contain;
+  flex: none;
+}
+
+.brand-name {
+  font-size: clamp(20px, 5vw, 30px);
+  font-weight: 900;
+  letter-spacing: 1.5px;
+}
+
+.brand-sub {
+  font-size: 10px;
+  letter-spacing: 4px;
+  color: var(--blue);
+  font-weight: 800;
+  margin-top: 4px;
+}
+
+.card {
+  border: 1px solid #29304d;
+  border-radius: 26px;
+  background: linear-gradient(145deg, rgba(14,17,34,.97), rgba(5,7,16,.98));
+  box-shadow: 0 0 45px #6a13ff14;
+  padding: clamp(20px, 5vw, 36px);
+  overflow: hidden;
+}
+
+.kicker {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #aab3d0;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.step {
+  margin-top: 10px;
+  color: #aab3d0;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.step strong { color: #ff26c4; }
+
+.track {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  margin: 18px 0 28px;
+}
+
+.dot {
+  height: 5px;
+  border-radius: 9px;
+  background: #28324e;
+}
+
+.dot.done {
+  background: linear-gradient(90deg, var(--pink), var(--blue));
+  box-shadow: 0 0 10px #8b2cff66;
+}
+
+h1 {
+  font-size: clamp(27px, 6vw, 42px);
+  line-height: 1.15;
+  margin: 0 0 12px;
+  letter-spacing: -.7px;
+}
+
+.gradient {
+  background: linear-gradient(90deg, #ff19b9, #8a43ff, #00d9ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hint {
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 0 0 24px;
+  font-size: 15px;
+}
+
+.field { margin: 22px 0; }
+
+label {
+  display: block;
+  color: #dce1f7;
+  font-weight: 650;
+  margin: 0 0 9px;
+  font-size: 14px;
+}
+
+input, textarea {
+  display: block;
+  width: 100%;
+  border: 1px solid #3d4267;
+  border-radius: 15px;
+  padding: 16px;
+  background: #090d1a;
+  color: #fff;
+  font: inherit;
+  outline: none;
+  transition: border-color .2s, box-shadow .2s;
+}
+
+input:focus, textarea:focus {
+  border-color: #9a43ff;
+  box-shadow: 0 0 0 3px #8b2cff26;
+}
+
+textarea {
+  min-height: 125px;
+  resize: vertical;
+}
+
+::placeholder { color: #727d9c; }
+
+.options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 11px;
+}
+
+.option {
+  width: 100%;
+  min-width: 0;
+  border: 1px solid #303957;
+  border-radius: 15px;
+  padding: 15px 12px;
+  background: #0a0e1d;
+  color: #e7eaff;
+  text-align: left;
+  cursor: pointer;
+  min-height: 62px;
+  font: inherit;
+  overflow-wrap: anywhere;
+}
+
+.option.selected {
+  border-color: #b13cff;
+  background: linear-gradient(130deg, #5d0e7940, #006b9740);
+  box-shadow: inset 0 0 0 1px #00d9ff55;
+}
+
+.option small {
+  display: block;
+  font-size: 12px;
+  color: #8995b7;
+  margin-top: 5px;
+  line-height: 1.45;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.btn {
+  border: 0;
+  border-radius: 15px;
+  padding: 16px 14px;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+  min-height: 52px;
+}
+
+.primary {
+  flex: 1;
+  color: #fff;
+  background: linear-gradient(100deg, #ec00c8, #722cff 52%, #00cfff);
+  box-shadow: 0 8px 26px #8b2cff35;
+}
+
+.secondary {
+  background: #151a2d;
+  color: #dbe2ff;
+  border: 1px solid #303957;
+}
+
+.btn:disabled {
+  opacity: .55;
+  cursor: wait;
+}
+
+.review {
+  display: grid;
+  border: 1px solid #2c3452;
+  border-radius: 15px;
+  overflow: hidden;
+  margin-top: 22px;
+}
+
+.review-row {
+  padding: 13px 15px;
+  border-bottom: 1px solid #252d48;
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  gap: 12px;
+}
+
+.review-row:last-child { border-bottom: 0; }
+
+.review-key {
+  color: #96a1c0;
+  font-size: 13px;
+}
+
+.review-val {
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.message {
+  display: none;
+  margin-top: 16px;
+  padding: 14px;
+  border-radius: 12px;
+  font-size: 14px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.message.error {
+  display: block;
+  background: #421b2b;
+  color: #ffd7e2;
+}
+
+.message.success {
+  display: block;
+  background: #123a2a;
+  color: #c6ffdf;
+}
+
+.success {
+  text-align: center;
+  padding: 28px 4px;
+}
+
+.success-icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  margin: 0 auto 20px;
+  display: grid;
+  place-items: center;
+  font-size: 32px;
+  background: linear-gradient(135deg, #c400df, #00cfff);
+  box-shadow: 0 0 35px #782bff55;
+}
+
+.foot {
+  text-align: center;
+  color: #687493;
+  font-size: 12px;
+  line-height: 1.5;
+  margin-top: 18px;
+}
+
+@media(max-width: 440px) {
+  .wrap { padding: 16px 12px 28px; }
+  .brand { margin: 8px 0 18px; gap: 10px; }
+  .mark { width: 62px; height: 62px; }
+  .brand-sub { letter-spacing: 2.5px; }
+  .card { border-radius: 21px; }
+  .options { grid-template-columns: 1fr; }
+  .review-row { grid-template-columns: 95px minmax(0, 1fr); }
+  .actions .btn { padding: 15px 11px; }
+}
 </style>
 </head>
+
 <body>
 <main class="wrap">
-<header class="brand" aria-label="KODEX Media Group">
 
+  <header class="brand" aria-label="KODEX Media Group">
+    <img src="./logo.jpg" alt="Логотип KODEX" class="mark">
+    <div>
+      <div class="brand-name">KODEX</div>
+      <div class="brand-sub">MEDIA GROUP</div>
+    </div>
+  </header>
 
-<img
-  src="logo.jpg"
-  alt="K"
-  class="mark"
-  style="display:block;width:100px;height:100px;object-fit:contain;object-position:center;flex-shrink:0;background:transparent;border:0;border-radius:0;box-shadow:none;"
->
-
-  <div>
-    <div class="brand-name">KODEX</div>
-    <div class="brand-sub">MEDIA GROUP</div>
-  </div>
-</header>
   <section class="card" id="app">
     <div class="kicker">Оформление заявки</div>
     <div class="step" id="stepLabel">ШАГ <strong>1</strong> ИЗ 7</div>
     <div class="track" id="track"></div>
-    <div id="screen"></div>
+    <div id="screen">
+      <h1>Давайте начнём <span class="gradient">с начала</span></h1>
+      <p class="hint">Как к вам обращаться?</p>
+      <p class="hint">Загрузка формы…</p>
+    </div>
+    <div id="message" class="message" role="status" aria-live="polite"></div>
   </section>
-  <div class="foot">KODEX MEDIA GROUP · Ваши идеи — наши технологии</div>
+
+  <footer class="foot">
+    KODEX MEDIA GROUP · Ваши идеи — наши технологии
+  </footer>
+
 </main>
+
 <script>
-const services=[
- ["AI-видео","Ролики, реклама, визуальные истории"],
- ["Чат-бот","Telegram-боты и автоматизация общения"],
- ["ИИ-агенты","Умные помощники для задач бизнеса"],
- ["Автоматизация","Оптимизация рабочих процессов"],
- ["Сайт или приложение","Цифровые продукты и интерфейсы"],
- ["Другое","Опишите, что вам нужно"]
-];
-const data={name:"",project:"",service:"",task:"",budget:"",deadline:"",contact:""};
-let step=1,finished=false;
-const screen=document.getElementById("screen"),stepLabel=document.getElementById("stepLabel"),track=document.getElementById("track");
-function renderTrack(){track.innerHTML="";for(let i=1;i<=7;i++){let d=document.createElement("div");d.className="dot"+(i<=step?" done":"");track.appendChild(d)}}
-function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
-function field(label,key,placeholder,type="text",optional=false){return `<div class="field"><label for="${key}">${label}${optional?' <span style="color:#8b96b8;font-weight:400">(необязательно)</span>':''}</label><input id="${key}" name="${key}" type="${type}" placeholder="${placeholder}" value="${escapeHtml(data[key])}" ${optional?'':'required'} autocomplete="off"></div>`}
-function render(){
- renderTrack();stepLabel.innerHTML=`ШАГ <strong>${step}</strong> ИЗ 7`;
- let content="";
- if(step===1)content=`<h1>Давайте начнём<br><span class="gradient">с начала</span></h1><p class="hint">Как к вам обращаться?</p>${field("Ваше имя","name","Введите ваше имя")}`;
- if(step===2)content=`<h1>Ваш проект</h1><p class="hint">Расскажите, для какой компании или идеи нужна услуга.</p>${field("Название компании или проекта","project","Введите название или напишите «Нет»")}`;
- if(step===3)content=`<h1>Выберите <span class="gradient">услугу</span></h1><p class="hint">Что вы хотите создать или улучшить?</p><div class="options">${services.map(([n,d])=>`<button type="button" class="option ${data.service===n?'selected':''}" data-service="${n}">${n}<span>${d}</span></button>`).join("")}</div>`;
- if(step===4)content=`<h1>Расскажите о задаче</h1><p class="hint">Что нужно сделать и какой результат вы хотите получить?</p><div class="field"><label for="task">Описание задачи</label><textarea id="task" placeholder="Например: ИИ-видео длительностью 15 секунд для рекламы продукта" required>${escapeHtml(data.task)}</textarea></div>`;
- if(step===5)content=`<h1>Ваш <span class="gradient">бюджет</span></h1><p class="hint">Укажите примерную сумму. Это поможет предложить подходящее решение.</p>${field("Планируемый бюджет","budget","Например: 50000 ₸")}<button type="button" class="option ${!data.budget?'selected':''}" id="skipBudget">Пропустить<span>Пока не определился(-ась)</span></button>`;
- if(step===6)content=`<h1>Когда нужен результат?</h1><p class="hint">Укажите желаемый срок выполнения.</p>${field("Желаемый срок","deadline","Например: за 7 дней или до 1 ноября")}<button type="button" class="option ${!data.deadline?'selected':''}" id="skipDeadline">Пропустить<span>Срок пока не определён</span></button>`;
- if(step===7)content=`<h1>Оставьте <span class="gradient">контакт</span></h1><p class="hint">Куда с вами связаться по заявке?</p>${field("Telegram или номер телефона","contact","@username или +7 700 000-00-00")}<p class="hint" style="font-size:12px;margin:10px 0 0">Не отправляйте пароли или коды подтверждения.</p>`;
- screen.innerHTML=content+`<div class="actions">${step>1?'<button class="btn secondary" id="back">Назад</button>':''}<button class="btn primary" id="next">${step===7?'Проверить заявку':'Продолжить'} →</button></div>`;
- screen.querySelectorAll("[data-service]").forEach(b=>b.onclick=()=>{data.service=b.dataset.service;render()});
- const b=document.getElementById("back");if(b)b.onclick=()=>{saveCurrent();step--;render()};
- document.getElementById("next").onclick=()=>{if(!saveCurrent())return;if(step<7){step++;render()}else review()};
- const sb=document.getElementById("skipBudget");if(sb)sb.onclick=()=>{data.budget="";step++;render()};
- const sd=document.getElementById("skipDeadline");if(sd)sd.onclick=()=>{data.deadline="";step++;render()};
-}
-function saveCurrent(){
- if(step===3){if(!data.service){alert("Пожалуйста, выберите услугу.");return false}return true}
- const el=document.getElementById(["","name","project","","task","budget","deadline","contact"][step]);
- if(!el)return true;
- const value=el.value.trim();
- if(step===1&&!value){alert("Введите, пожалуйста, ваше имя.");el.focus();return false}
- if(step===2&&!value){alert("Введите название проекта или напишите «Нет».");el.focus();return false}
- if(step===4&&!value){alert("Опишите задачу несколькими словами.");el.focus();return false}
- if(step===7&&!value){alert("Укажите Telegram или номер телефона для связи.");el.focus();return false}
- data[el.id]=value;return true;
-}
-function review(){
- stepLabel.textContent="ПОСЛЕДНИЙ ШАГ · ПРОВЕРКА";track.innerHTML='<div class="dot done" style="grid-column:span 7"></div>';
- const rows=[["Имя",data.name],["Компания / проект",data.project||"Нет"],["Услуга",data.service],["Задача",data.task],["Бюджет",data.budget||"Не указан"],["Срок",data.deadline||"Не указан"],["Контакт",data.contact]];
- screen.innerHTML=`<h1>Проверьте <span class="gradient">заявку</span></h1><p class="hint">Убедитесь, что всё указано верно.</p><div class="review">${rows.map(([k,v])=>`<div class="review-row"><div class="key">${k}</div><div class="val">${escapeHtml(v)}</div></div>`).join("")}</div><div class="actions"><button class="btn secondary" id="edit">Изменить</button><button class="btn primary" id="submit">Подтвердить заявку →</button></div><p class="hint" style="font-size:12px;margin:15px 0 0">Это демонстрационный прототип: пока заявка не отправляется на сервер и не приходит администратору.</p>`;
- document.getElementById("edit").onclick=()=>{step=1;render()};
- document.getElementById("submit").onclick = async () => {
-  const button = document.getElementById("submit");
-  button.disabled = true;
-  button.textContent = "Отправляем заявку...";
+(function () {
+  "use strict";
 
-  try {
-    const response = await fetch("https://kodex-mini-app.onrender.com/submit", {
-      method: "POST",
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify(data)
+  const API_URL = "https://kodex-mini-app.onrender.com/submit";
+
+  const services = [
+    ["AI-видео", "Ролики, реклама, визуальные истории"],
+    ["Чат-бот", "Telegram-боты и автоматизация общения"],
+    ["ИИ-агенты", "Умные помощники для задач бизнеса"],
+    ["Автоматизация", "Оптимизация рабочих процессов"],
+    ["Сайт или приложение", "Цифровые продукты и интерфейсы"],
+    ["Другое", "Опишите, что вам нужно"]
+  ];
+
+  const budgets = [
+    "До 10 000 ₸",
+    "10 000–30 000 ₸",
+    "30 000–50 000 ₸",
+    "50 000–100 000 ₸",
+    "Более 100 000 ₸",
+    "Пока не определился(-ась)"
+  ];
+
+  const deadlines = [
+    "Как можно скорее",
+    "В течение 7 дней",
+    "В течение 2–4 недель",
+    "В течение 1–2 месяцев",
+    "Срок не принципиален"
+  ];
+
+  const data = {
+    name: "",
+    project: "",
+    service: "",
+    task: "",
+    budget: "",
+    deadline: "",
+    contact: ""
+  };
+
+  const screen = document.getElementById("screen");
+  const stepLabel = document.getElementById("stepLabel");
+  const track = document.getElementById("track");
+  const message = document.getElementById("message");
+
+  let step = 1;
+  let sending = false;
+
+  const labels = {
+    name: "Имя",
+    project: "Компания / проект",
+    service: "Услуга",
+    task: "Задача",
+    budget: "Бюджет",
+    deadline: "Срок",
+    contact: "Контакт"
+  };
+
+  function escapeHtml(value) {
+    return String(value ?? "").replace(/[&<>"']/g, function (char) {
+      return {
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+      }[char];
     });
+  }
 
-    const result = await response.json();
+  function showMessage(text, type) {
+    message.className = "message " + type;
+    message.textContent = text;
+  }
 
-    if (!response.ok || !result.ok) {
-      throw new Error("Не удалось отправить заявку");
+  function clearMessage() {
+    message.className = "message";
+    message.textContent = "";
+  }
+
+  function renderTrack() {
+    track.innerHTML = "";
+
+    for (let i = 1; i <= 7; i++) {
+      const dot = document.createElement("div");
+      dot.className = "dot" + (i <= step ? " done" : "");
+      track.appendChild(dot);
     }
 
-    screen.innerHTML = `
-      <div class="success">
-        <div class="success-icon">✓</div>
-        <h1>Отлично!</h1>
-        <p class="hint">Заявка отправлена в KODEX MEDIA GROUP. Мы свяжемся с вами!</p>
-        <button class="btn primary" id="restart">Заполнить новую заявку</button>
-      </div>`;
-
-    document.getElementById("restart").onclick = () => {
-      Object.keys(data).forEach(k => data[k] = "");
-      step = 1;
-      render();
-    };
-  } catch (error) {
-    alert("Пока сервер не подключён. Заявка не отправлена. Попробуйте позже.");
-    button.disabled = false;
-    button.textContent = "Подтвердить заявку";
+    stepLabel.innerHTML = "ШАГ <strong>" + step + "</strong> ИЗ 7";
   }
-};
-render();
+
+  function field(label, key, placeholder) {
+    return `
+      <div class="field">
+        <label for="${key}">${label}</label>
+        <input
+          id="${key}"
+          name="${key}"
+          type="text"
+          placeholder="${placeholder}"
+          value="${escapeHtml(data[key])}"
+          autocomplete="${key === "name" ? "name" : "off"}"
+          maxlength="${key === "task" ? "2000" : "250"}"
+        >
+      </div>
+    `;
+  }
+
+  function optionList(items, key, descriptions) {
+    return `
+      <div class="options">
+        ${items.map(item => {
+          const value = Array.isArray(item) ? item[0] : item;
+          const description = Array.isArray(item) ? item[1] : "";
+          return `
+            <button
+              type="button"
+              class="option ${data[key] === value ? "selected" : ""}"
+              data-key="${key}"
+              data-value="${escapeHtml(value)}"
+              aria-pressed="${data[key] === value}"
+            >
+              ${escapeHtml(value)}
+              ${description ? `<small>${escapeHtml(description)}</small>` : ""}
+            </button>
+          `;
+        }).join("")}
+      </div>
+    `;
+  }
+
+  function render() {
+    clearMessage();
+    renderTrack();
+
+    let content = "";
+
+    if (step === 1) {
+      content = `
+        <h1>Давайте начнём<br><span class="gradient">с начала</span></h1>
+        <p class="hint">Как к вам обращаться?</p>
+        ${field("Ваше имя", "name", "Введите ваше имя")}
+      `;
+    } else if (step === 2) {
+      content = `
+        <h1>Ваш <span class="gradient">проект</span></h1>
+        <p class="hint">Для какой компании или идеи нужна услуга? Если проекта пока нет, напишите «Нет».</p>
+        ${field("Название компании или проекта", "project", "Введите название или напишите «Нет»")}
+      `;
+    } else if (step === 3) {
+      content = `
+        <h1>Выберите <span class="gradient">услугу</span></h1>
+        <p class="hint">Что вы хотите создать или улучшить?</p>
+        ${optionList(services, "service")}
+      `;
+    } else if (step === 4) {
+      content = `
+        <h1>Расскажите о <span class="gradient">задаче</span></h1>
+        <p class="hint">Что нужно сделать и какой результат вы хотите получить?</p>
+        <div class="field">
+          <label for="task">Описание задачи</label>
+          <textarea id="task" name="task" maxlength="2000" placeholder="Например: ИИ-видео длительностью 15 секунд для рекламы продукта">${escapeHtml(data.task)}</textarea>
+        </div>
+      `;
+    } else if (step === 5) {
+      content = `
+        <h1>Ваш <span class="gradient">бюджет</span></h1>
+        <p class="hint">Укажите примерную сумму или пропустите этот шаг.</p>
+        ${optionList(budgets, "budget")}
+        <button type="button" class="option" id="skipBudget" style="margin-top:10px">Пропустить <small>Пока не определился(-ась)</small></button>
+      `;
+    } else if (step === 6) {
+      content = `
+        <h1>Когда нужен <span class="gradient">результат?</span></h1>
+        <p class="hint">Укажите желаемый срок или пропустите этот шаг.</p>
+        ${optionList(deadlines, "deadline")}
+        <button type="button" class="option" id="skipDeadline" style="margin-top:10px">Пропустить <small>Срок пока не определён</small></button>
+      `;
+    } else if (step === 7) {
+      content = `
+        <h1>Оставьте <span class="gradient">контакт</span></h1>
+        <p class="hint">Куда с вами связаться по заявке?</p>
+        ${field("Telegram или номер телефона", "contact", "@username или +7 700 000-00-00")}
+        <p class="hint" style="font-size:12px;margin:10px 0 0">Не отправляйте пароли или коды подтверждения.</p>
+      `;
+    }
+
+    screen.innerHTML = content + `
+      <div class="actions">
+        ${step > 1 ? '<button type="button" class="btn secondary" id="back">← Назад</button>' : ""}
+        <button type="button" class="btn primary" id="next">
+          ${step === 7 ? "Проверить заявку →" : "Продолжить →"}
+        </button>
+      </div>
+    `;
+
+    screen.querySelectorAll("[data-key]").forEach(button => {
+      button.addEventListener("click", function () {
+        data[this.dataset.key] = this.dataset.value;
+        render();
+      });
+    });
+
+    const back = document.getElementById("back");
+    if (back) {
+      back.addEventListener("click", function () {
+        saveCurrent();
+        step--;
+        render();
+      });
+    }
+
+    const next = document.getElementById("next");
+    next.addEventListener("click", function () {
+      if (!saveCurrent()) return;
+
+      if (step < 7) {
+        step++;
+        render();
+      } else {
+        renderReview();
+      }
+    });
+
+    const skipBudget = document.getElementById("skipBudget");
+    if (skipBudget) {
+      skipBudget.addEventListener("click", function () {
+        data.budget = "";
+        step = 6;
+        render();
+      });
+    }
+
+    const skipDeadline = document.getElementById("skipDeadline");
+    if (skipDeadline) {
+      skipDeadline.addEventListener("click", function () {
+        data.deadline = "";
+        step = 7;
+        render();
+      });
+    }
+  }
+
+  function saveCurrent() {
+    const keys = {
+      1: "name",
+      2: "project",
+      4: "task",
+      7: "contact"
+    };
+
+    const key = keys[step];
+    if (!key) return true;
+
+    const input = document.getElementById(key);
+    if (!input) return true;
+
+    data[key] = input.value.trim();
+
+    if (!data[key]) {
+      showMessage("Пожалуйста, заполните это поле.", "error");
+      input.focus();
+      return false;
+    }
+
+    return true;
+  }
+
+  function renderReview() {
+    clearMessage();
+    stepLabel.textContent = "ПОСЛЕДНИЙ ШАГ · ПРОВЕРКА";
+    track.innerHTML = '<div class="dot done" style="grid-column:span 7"></div>';
+
+    const rows = Object.keys(labels).map(key => `
+      <div class="review-row">
+        <div class="review-key">${labels[key]}</div>
+        <div class="review-val">${escapeHtml(data[key] || "Не указано")}</div>
+      </div>
+    `).join("");
+
+    screen.innerHTML = `
+      <h1>Проверьте <span class="gradient">заявку</span></h1>
+      <p class="hint">Убедитесь, что всё указано верно. Бюджет и срок можно оставить пустыми.</p>
+      <div class="review">${rows}</div>
+      <div class="actions">
+        <button type="button" class="btn secondary" id="edit">← Изменить</button>
+        <button type="button" class="btn primary" id="submit">Подтвердить →</button>
+      </div>
+    `;
+
+    document.getElementById("edit").addEventListener("click", function () {
+      step = 7;
+      render();
+    });
+
+    document.getElementById("submit").addEventListener("click", submitForm);
+  }
+
+  async function submitForm() {
+    if (sending) return;
+
+    const button = document.getElementById("submit");
+    sending = true;
+    button.disabled = true;
+    button.textContent = "Отправляем...";
+
+    try {
+      const response = await fetch(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      });
+
+      const result = await response.json().catch(() => ({}));
+
+      if (!response.ok || !result.ok) {
+        throw new Error("Сервер не подтвердил получение заявки.");
+      }
+
+      screen.innerHTML = `
+        <div class="success">
+          <div class="success-icon">✓</div>
+          <h1>Отлично!</h1>
+          <p class="hint">Заявка отправлена команде KODEX MEDIA GROUP. Мы свяжемся с вами!</p>
+          <button type="button" class="btn primary" id="restart">Заполнить новую заявку</button>
+        </div>
+      `;
+
+      showMessage("Сервер подтвердил отправку заявки.", "success");
+      track.innerHTML = '<div class="dot done" style="grid-column:span 7"></div>';
+      stepLabel.textContent = "ЗАЯВКА ОТПРАВЛЕНА";
+
+      document.getElementById("restart").addEventListener("click", function () {
+        Object.keys(data).forEach(key => { data[key] = ""; });
+        step = 1;
+        render();
+      });
+
+    } catch (error) {
+      showMessage(
+        "Не удалось отправить заявку. Возможно, сервер запускается после простоя или соединение заблокировано. Ваши ответы сохранены — попробуйте ещё раз чуть позже.",
+        "error"
+      );
+      button.disabled = false;
+      button.textContent = "Попробовать снова";
+    } finally {
+      sending = false;
+    }
+  }
+
+  try {
+    render();
+  } catch (error) {
+    console.error("Ошибка запуска формы KODEX:", error);
+    screen.innerHTML = `
+      <h1>Не удалось загрузить форму</h1>
+      <p class="hint">Обновите страницу. Если проблема повторится, сообщите команде KODEX.</p>
+    `;
+  }
+})();
 </script>
 </body>
 </html>
