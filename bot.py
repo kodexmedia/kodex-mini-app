@@ -60,4 +60,13 @@ def webhook():
 
 
 if __name__ == "__main__":
+    if BOT_TOKEN:
+        webhook_url = "https://kodex-telegram-bot.onrender.com/webhook"
+        response = requests.post(
+            f"https://api.telegram.org/bot{BOT_TOKEN}/setWebhook",
+            json={"url": webhook_url},
+            timeout=20
+        )
+        print("Webhook setup:", response.text)
+
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
